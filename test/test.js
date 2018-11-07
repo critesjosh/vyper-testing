@@ -2,7 +2,6 @@ var assert = require('assert')
 var Web3 = require('web3')
 var contract = require('../contract-data').contract
 
-// set provider
 var web3 = new Web3('http://localhost:8545')
 
 var deployContract = new Promise(async (resolve, reject)=> {
@@ -11,8 +10,6 @@ var deployContract = new Promise(async (resolve, reject)=> {
   SimpleBank = await SimpleBank.deploy().send({gas: 1500000, from: accounts[0]})
   resolve(SimpleBank)
 })
-
-
 
   describe("SimpleBank", async function () {
 
@@ -48,10 +45,10 @@ var deployContract = new Promise(async (resolve, reject)=> {
 
       await SimpleBank.methods.enroll().send({from: accounts[1]});
   
-      const aliceEnrolled = await SimpleBank.methods.enrolled(accounts[1]).send({from: accounts[1]});
+      const aliceEnrolled = await SimpleBank.methods.enrolled(accounts[1]).call({from: accounts[1]});
       assert.equal(aliceEnrolled, true, 'enroll balance is incorrect, check balance method or constructor');
   
-      const ownerEnrolled = await SimpleBank.methods.enrolled(accounts[0]).send({from: accounts[0]});
+      const ownerEnrolled = await SimpleBank.methods.enrolled(accounts[0]).call({from: accounts[0]});
       assert.equal(ownerEnrolled, false, 'only enrolled users should be marked enrolled');
     });
    
