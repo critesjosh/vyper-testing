@@ -1,0 +1,21 @@
+{
+  "name": "vyper-testing",
+  "version": "1.0.0",
+  "description": "",
+  "main": "contract-data.js",
+  "directories": {
+    "test": "tests"
+  },
+  "scripts": {
+    "test": "mocha "
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "chai": "^4.2.0",
+    "web3": "^1.0.0-beta.36"
+  },
+  "devDependencies": {
+    "mocha": "^5.2.0"
+  }
+}
