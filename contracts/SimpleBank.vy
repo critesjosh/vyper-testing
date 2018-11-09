@@ -2,7 +2,7 @@ Enrolled: event({ accountAddress: indexed(address)  })
 DepositMade: event ({ accountAddress: address, amount: wei_value  })
 Withdrawal: event({ accountAddress: address, withdrawAmount: wei_value, newBalance: wei_value })
 
-balances: wei_value[address]
+userBalances: wei_value[address]
 enrolled: public(bool[address])
 owner: public(address)
 
@@ -22,8 +22,8 @@ def __init__():
 
 @public
 @constant
-def balance() -> wei_value:
-    return self.balances[msg.sender]
+def balances() -> wei_value:
+    return self.userBalances[msg.sender]
 
 # @notice Enroll a customer with the bank
 # @return The users enrolled status
@@ -44,9 +44,9 @@ def enroll() -> bool:
 @public
 @payable
 def deposit() -> wei_value:
-    self.balances[msg.sender] += msg.value
-    log.DepositMade(msg.sender, self.balances[msg.sender])
-    return self.balances[msg.sender]
+    self.userBalances[msg.sender] += msg.value
+    log.DepositMade(msg.sender, self.userBalances[msg.sender])
+    return self.userBalances[msg.sender]
 
 # @notice Withdraw ether from bank
 # @dev This does not return any excess ether sent to it
@@ -56,10 +56,10 @@ def deposit() -> wei_value:
 
 @public
 def withdraw(withdrawAmount: wei_value) -> wei_value:
-    assert(withdrawAmount <= self.balances[msg.sender])
-    self.balances[msg.sender] -= withdrawAmount
+    assert(withdrawAmount <= self.userBalances[msg.sender])
+    self.userBalances[msg.sender] -= withdrawAmount
     send(msg.sender, withdrawAmount)
-    log.Withdrawal(msg.sender, withdrawAmount, self.balances[msg.sender])
-    return self.balances[msg.sender]
+    log.Withdrawal(msg.sender, withdrawAmount, self.userBalances[msg.sender])
+    return self.userBalances[msg.sender]
 
 # With no fallback function specified, a fallback is automatically generated that will revert any transaction that it processes. This is not the case in Solidity.

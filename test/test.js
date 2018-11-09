@@ -2,30 +2,21 @@ var assert = require('assert')
 var Web3 = require('web3')
 var contract = require('../contract-data').contract
 
-var web3 = new Web3('http://localhost:8545')
+var fs = require('fs')
+var abi = fs.readFileSync('./abi.json', 'utf8')
+var bytecode = fs.readFileSync('./bytecode', 'utf8')
 
-var deployContract = new Promise(async (resolve, reject)=> {
-  var accounts = await web3.eth.getAccounts()
-  SimpleBank = new web3.eth.Contract(contract.abi, {from: accounts[0], data: contract.bytecode})
-  SimpleBank = await SimpleBank.deploy().send({gas: 1500000, from: accounts[0]})
-  resolve(SimpleBank)
-})
+var web3 = new Web3('http://localhost:8545')
 
   describe("SimpleBank", async function () {
 
-    var accounts
-    var SimpleBank
-
-    var owner
-    var alice
-    var bob
-    var deposit
+      var accounts, SimpleBank, owner, alice, bob, deposit
 
     before(async () => {
       accounts = await web3.eth.getAccounts()
-      SimpleBank = await deployContract
-
-      SimpleBank = SimpleBank
+      
+      SimpleBank = new web3.eth.Contract(contract.abi, {from: accounts[0], data: contract.bytecode})
+      SimpleBank = await SimpleBank.deploy().send({gas: 1500000, from: accounts[0]})
 
       owner = accounts[0]
       alice = accounts[1];
