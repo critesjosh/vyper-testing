@@ -7,7 +7,7 @@
     "test": "tests"
   },
   "scripts": {
-    "test": "mocha "
+    "test": "mocha --exit"
   },
   "author": "",
   "license": "ISC",

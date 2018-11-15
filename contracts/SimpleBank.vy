@@ -1,6 +1,18 @@
+#
+# It might be easier to write the Vyper contract at vyper.online to 
+# get syntax highlighting and easier compliation
+
+#
+# Events must be declared at the top of the file
+#
+
 Enrolled: event({ accountAddress: indexed(address)  })
-DepositMade: event ({ accountAddress: address, amount: wei_value  })
-Withdrawal: event({ accountAddress: address, withdrawAmount: wei_value, newBalance: wei_value })
+DepositMade: event ({ accountAddress: indexed(address), amount: wei_value  })
+Withdrawal: event({ accountAddress: indexed(address), withdrawAmount: wei_value, newBalance: wei_value })
+
+#
+# State variables
+#
 
 userBalances: wei_value[address]
 enrolled: public(bool[address])
