@@ -9,7 +9,7 @@ To get started, clone this repository to your machine, navigate to the root of t
 
 You will be working on completing the SimpleBank.vy contract in the contracts directory. There are comments in the file to guide you. You will also want to consult the [Vyper documentation](https://vyper.readthedocs.io/en/latest/).
 
-**The SimpleBank.vy contract is complete and passing in this version of the exercise. It will be gutted before distributing to students.**
+**The SimpleBank.vy contract is complete and tests are passing in this version of the exercise. It will be gutted before distributing to students.**
 
 ## Install Vyper
 
