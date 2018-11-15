@@ -5,9 +5,12 @@ contract similar to the one in this
 [repository](https://github.com/ConsenSys-Academy/simple-bank-exercise),
 except we are going to do it with Vyper!
 
+To get started, clone this repository to your machine, navigate to the root of the project directory and run `npm install`.
+
+You will be working on completing the SimpleBank.vy contract in the contracts directory. There are comments in the file to guide you. You will also want to consult the [Vyper documentation](https://vyper.readthedocs.io/en/latest/).
+
 ## Install Vyper
-Let's consult [the Vyper
-documentation](https://vyper.readthedocs.io/en/latest/). First, you
+Let's consult [the Vyper documentation](https://vyper.readthedocs.io/en/latest/). First, you
 need to install the Vyper compiler, which will generate the ABI and
 bytecode from the [SimpleBank.vy](./contracts/SimpleBank.vy) file.
 
